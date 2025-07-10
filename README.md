@@ -2,7 +2,12 @@
 
 A lightweight desktop weather application that displays current temperature in a small, movable window with system tray integration.
 
+## Screenshots
+
+### City Entry Dialog
 ![Enter City Screenshot](assets/screenshot1.png)
+
+### Temperature Display
 ![Temperature Screenshot](assets/screenshot2.png)
 
 ## Features
@@ -29,14 +34,14 @@ A lightweight desktop weather application that displays current temperature in a
 ### Required Packages
 
 ```bash
-pip install pystray pillow requests tkinter
+pip install -r requirements.txt
 ```
 
 ### Setup
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/weather-app.git
+git clone https://github.com/Daemosthene/weather-app.git
 cd weather-app
 ```
 
@@ -44,10 +49,24 @@ cd weather-app
    - Sign up for a free account
    - Generate an API key
 
-3. Edit `TempRain.py` and replace the API key:
-```python
-API_KEY = 'your_api_key_here'
-```
+3. Set up your API key using one of these methods:
+
+   **Option A: Environment Variable (Recommended)**
+   ```bash
+   # Windows Command Prompt
+   set OPENWEATHER_API_KEY=your_api_key_here
+   
+   # Windows PowerShell
+   $env:OPENWEATHER_API_KEY="your_api_key_here"
+   
+   # Or set permanently in Windows System Environment Variables
+   ```
+
+   **Option B: .env File**
+   ```bash
+   # Create a .env file in the project directory
+   echo OPENWEATHER_API_KEY=your_api_key_here > .env
+   ```
 
 4. Run the application:
 ```bash
@@ -83,10 +102,12 @@ WeatherApp/
 ├── README.md            # This file
 ├── LICENSE              # License file
 ├── requirements.txt     # Python dependencies
+├── .env                 # API key (create this file)
 ├── assets/              # Assets folder
 │   ├── weatherAppIcon.png
 │   ├── raindrop.png
-│   └── screenshot.png
+│   ├── screenshot1.png
+│   └── screenshot2.png
 ├── city.txt             # Saved city (auto-generated)
 └── window_position.json # Saved position (auto-generated)
 ```
@@ -118,6 +139,10 @@ Customize temperature color thresholds in the `update_weather_info()` function.
 3. **Temperature display disappears**:
    - Use system tray menu to show the display
    - Check `weather_app_error.log` for error details
+
+4. **Images not loading**:
+   - Verify assets folder contains all required images
+   - Check file paths in the code
 
 ### Error Logs
 The app creates error logs for troubleshooting:

@@ -10,10 +10,33 @@ import sys
 import os
 import traceback
 
-# Get API key from environment variable or use placeholder
-API_KEY = os.getenv('OPENWEATHER_API_KEY', 'your_api_key_here')
+# Get API key from environment variable, .env file, or use placeholder
+def load_api_key():
+    # Try environment variable first
+    api_key = os.getenv('OPENWEATHER_API_KEY')
+    if api_key:
+        return api_key
+    
+    # Try loading from .env file
+    try:
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        env_path = os.path.join(script_dir, '.env')
+        with open(env_path, 'r') as f:
+            for line in f:
+                if line.startswith('OPENWEATHER_API_KEY='):
+                    return line.split('=', 1)[1].strip()
+    except FileNotFoundError:
+        pass
+    
+    # Fallback to placeholder
+    return 'your_api_key_here'
+
+API_KEY = load_api_key()
 if API_KEY == 'your_api_key_here':
-    print("Warning: Please set your OpenWeatherMap API key in the OPENWEATHER_API_KEY environment variable")
+    print("Warning: Please set your OpenWeatherMap API key")
+    print("Options:")
+    print("1. Set environment variable: OPENWEATHER_API_KEY")
+    print("2. Create a .env file with: OPENWEATHER_API_KEY=your_key_here")
 
 CITY_FILE = 'city.txt'
 UPDATE_INTERVAL = 1800000  # 30 minutes in milliseconds

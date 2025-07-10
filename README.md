@@ -2,7 +2,8 @@
 
 A lightweight desktop weather application that displays current temperature in a small, movable window with system tray integration.
 
-![Weather App Screenshot](assets/screenshot.png)
+![Enter City Screenshot](assets/screenshot1.png)
+![Temperature Screenshot](assets/screenshot2.png)
 
 ## Features
 

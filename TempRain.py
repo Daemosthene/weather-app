@@ -10,8 +10,11 @@ import sys
 import os
 import traceback
 
-# Replace 'your_api_key_here' with your actual OpenWeatherMap API key
-API_KEY = '9283c36025e2c865359c85777e745239'
+# Get API key from environment variable or use placeholder
+API_KEY = os.getenv('OPENWEATHER_API_KEY', 'your_api_key_here')
+if API_KEY == 'your_api_key_here':
+    print("Warning: Please set your OpenWeatherMap API key in the OPENWEATHER_API_KEY environment variable")
+
 CITY_FILE = 'city.txt'
 UPDATE_INTERVAL = 1800000  # 30 minutes in milliseconds
 WINDOW_POSITION_FILE = 'window_position.json'  # File to save the window position
